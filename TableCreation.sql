@@ -75,8 +75,8 @@ create table order_dish (
 );
 
 -- Auxilliary Table for m-n of dish-ingredient.
-create table dish_ingred (
-	dish_id int references dish(dish_id),
-    ingredient_id int references ingredient(ingredient_id),
-    primary key (dish_id, ingredient_id)
+CREATE TABLE dish_ingred (
+    dish_id INT REFERENCES dish (dish_id),
+    ingredient_id INT REFERENCES ingredient (ingredient_id),
+    PRIMARY KEY (dish_id , ingredient_id)
 );

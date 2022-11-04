@@ -10,7 +10,12 @@ DETERMINISTIC
 BEGIN
     DECLARE is_member boolean;
     DECLARE member_found_id int default -1;
-    select member_id from member where customer_id=m_id into member_found_id;
+SELECT 
+    member_id
+FROM
+    member
+WHERE
+    customer_id = m_id INTO member_found_id;
     if member_found_id=-1 then
 		set is_member = false;	
 	else 
@@ -23,9 +28,9 @@ DELIMITER ;
 select isMember(1);
 
 -- This procedure shows employees by designation
-DROP procedure IF EXISTS `emp_by_designation`;
+DROP procedure IF EXISTS emp_by_designation;
 DELIMITER $$
-CREATE PROCEDURE `emp_by_designation`(in designation_var varchar(255))
+CREATE PROCEDURE emp_by_designation(in designation_var varchar(255))
 BEGIN
 	select employee.employee_id, nationality, mobile, address, designation.designation_id, designation.designation_name, salary from emp_des inner join employee on emp_des.employee_id=employee.employee_id inner join designation on emp_des.designation_id=designation.designation_id having designation_name=designation_var;
 END$$
