@@ -1,11 +1,11 @@
-create database dbms_project;
+-- This file deals with creating the database and the tables.
+create database dbms_project_rms;
 
-use dbms_project;
+use dbms_project_rms;
 
 -- Primary Tables
 create table employee (
   employee_id int primary key,
-  designation_id int,
   nationality varchar(255),
   mobile varchar(20),
   address varchar(255)
@@ -20,7 +20,7 @@ create table customer (
 
 create table designation (
   designation_id int primary key,
-  desgination_name varchar(255),
+  designation_name varchar(255),
   salary int
 );
 
@@ -28,7 +28,8 @@ create table member (
 	member_id int primary key,
 	total_spent int,
 	total_discount int,
-	date_joined	datetime
+	date_joined	datetime,
+    customer_id int references customer(customer_id)
 );
 
 create table booking (
